@@ -1,10 +1,12 @@
+import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import Event from '../components/Event';
 
+
 const mapStateToProps = (state) => {
     //console.log("Events");
-    //console.log(state);
+    // console.log(state.events);
     return {
         events : state.events
     }

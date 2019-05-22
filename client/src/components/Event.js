@@ -5,6 +5,7 @@ import { Button } from 'reactstrap';
 export default class Event extends React.Component {
     componentDidMount(){
         this.props.fetchEvents();
+        console.log(this.props.fetchEvents)
     }
     handleSubmit = (e) => {
         e.preventDefault();

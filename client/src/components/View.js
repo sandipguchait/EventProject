@@ -1,5 +1,8 @@
 import React from 'react';
-import EditPost from './EditPost'
+import EditPost from './EditPost';
+import {} from 'reactstrap';
+
+
 export default class View extends React.Component {
     constructor(props){
         super(props);

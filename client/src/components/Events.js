@@ -1,9 +1,17 @@
 import React from 'react';
 import Post from '../containers/Post';
 import { Spinner } from 'reactstrap';
+import { connect } from 'react-redux';
+import  * as actions from '../actions';
 
-export default class Events extends React.Component {
+class Events extends React.Component {
+
+    componentDidMount() {
+        this.props.fetchEvents()        
+    }
+
     render() {
+        console.log(this.props)
         const events = this.props.events;
         return (
             
@@ -18,3 +26,21 @@ export default class Events extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    console.log(state)
+    return {
+        isFetching : state.isFetching,
+        events : state.events,
+        eventToEdit : state.eventToEdit,
+        eventToDelete : state.eventToDelete
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchEvents : () => dispatch(actions.fetchEvents())
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Events);

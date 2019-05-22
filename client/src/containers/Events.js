@@ -2,7 +2,10 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import Events from '../components/Events';
 
+
+
 const mapStateToProps = (state) => {
+    console.log(state)
     return {
         isFetching : state.isFetching,
         events : state.events,
@@ -18,3 +21,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Events);
+

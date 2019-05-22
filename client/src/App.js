@@ -10,9 +10,8 @@ class App extends React.Component {
       <div className = "App">
           {/* <Event />
           <Events /> */}
-          <Route exact path="/addevent" component={Event} >
-            <Route path="/eventlist" component={Events} />
-          </Route>
+          <Route exact path="/addevent" component={Event} />
+          <Route path="/eventlist" component={Events} />
       </div>
     )
   }

@@ -36,7 +36,7 @@ export const Reducers = (currentState = INITIAL_STATE, action) => {
         case actions.FETCH_EVENTS_FAILURE:
             return {
                 ...currentState,
-                events : [],
+                events : action.events.events,
                 isFetching : false,
                 error : action.error,
                 eventToDelete : null,
