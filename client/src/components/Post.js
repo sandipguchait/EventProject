@@ -6,7 +6,6 @@ import { Container, Row , CardDeck} from 'reactstrap'
 export default class Post extends React.Component{
     render() {
         const events = this.props.events;
-        console.log('FROM POST',this.props);
 
         return (
             <div>

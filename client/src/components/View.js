@@ -39,8 +39,8 @@ class View extends React.Component {
                         Time : { this.props.event.time }<br/>
                         Followers : { this.props.event.followers}<br/>
                     </CardText>
-                    <Link to={`/update/${this.props.event.id}`}><Button color="primary">EDIT</Button></Link>{' '}
-                    <Button color="danger" onClick = {() => this.props.delete(this.props.event.id) }>DELETE</Button>{' '}
+                    <Link to={`/update/${this.props.event.id}`}><Button color="primary" style={{ borderRadius: "15px"}}>EDIT</Button></Link>{' '}
+                    <Button color="danger" onClick = {() => this.props.delete(this.props.event.id) } style={{ borderRadius: "15px"}}>DELETE</Button>{' '}
                     <div>
                      { this.state.showForm? <UpdateEvent renderForm={this.renderForm()} /> : "" }
                     </div>
