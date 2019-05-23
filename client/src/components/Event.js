@@ -11,6 +11,7 @@ export default class Event extends React.Component {
         e.preventDefault();
 
         const desc = this.getDesc.value;
+        const imageUrl = this.getImage.value;
         const date = this.getDate.value;
         const time = this.getTime.value;
         const followers = this.getFollowers.value;
@@ -18,6 +19,7 @@ export default class Event extends React.Component {
         const data = {
             _id : new Date(),
             desc,
+            imageUrl,
             date,
             time,
             followers,
@@ -27,6 +29,7 @@ export default class Event extends React.Component {
         this.props.addNewEvent(data);
         
         this.getDesc.value = '';
+        this.getImage.value = '';
         this.getDate.value = '';
         this.getTime.value = '';
         this.getFollowers.value = '0';
@@ -45,6 +48,8 @@ export default class Event extends React.Component {
                     <form className = 'form' onSubmit = { this.handleSubmit }>
                         <input required type = 'text' ref = { input => this.getDesc = input }
                             placeholder = 'Enter the event description' /> <br/>
+                        <input required type = 'text' ref = { input => this.getImage = input }
+                            placeholder = 'Image Link' /> <br/>
                         <input required type = 'date' ref = { input => this.getDate = input }
                             placeholder = 'Enter the event date' /> <br/>
                         <input required type = 'time' ref = { input => this.getTime = input }

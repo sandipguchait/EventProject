@@ -24,12 +24,13 @@ export const EDIT_EVENT_REQUEST = "EDIT_EVENT_REQUEST";
 
 // Add event actions
 export const addEvent = (event) => {
-    console.log(event);
+    console.log('FROM ACTION',event);
     return (dispatch) => {
         dispatch(addEventRequest(event));
         return axios.post("/api/addEvent" , {
             _id : event._id,
             desc : event.desc,
+            imageUrl: event.imageUrl,
             date : event.date,
             time : event.time,
             followers : event.followers
@@ -68,6 +69,7 @@ export const editEvent = (id, event) => {
         return axios.post("/api/editEvent", {
                 id : id,
                 desc : event.desc,
+                imageUrl: event.imageUrl,
                 date : event.date,
                 time : event.time,
                 followers : event.followers

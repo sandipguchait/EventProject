@@ -5,6 +5,7 @@ const Data = new Schema(
     {
         _id : String,
         desc: String,
+        imageUrl: String,
         date : String,
         time : String,
         followers : Number

@@ -7,12 +7,14 @@ export default class EditPost extends React.Component{
         e.preventDefault();
         console.log("clicked!")
         const newDesc = this.getDesc.value;
+        const newImageUrl = this.getImageUrl.value
         const newDate = this.getDate.value;
         const newTime = this.getTime.value;
         const newFollowers = this.getFollowers.value;
 
         const data = {
             desc : newDesc,
+            imageUrl: newImageUrl,
             date : newDate,
             time : newTime,
             followers : newFollowers
@@ -21,11 +23,14 @@ export default class EditPost extends React.Component{
     }
 
     render(){
+        if(this.props.post) {
         return(
             <div key = { this.props.post.id } className='post'>
                 <form className ="form">
                     <input required type = "text" ref = {(input) => this.getDesc = input}
                     defaultValue = { this.props.post.desc } placeholder = "Enter new description"/><br/>
+                    <input required type = "text" ref = {(input) => this.getImageUrl = input}
+                    defaultValue = { this.props.post.imageUrl } placeholder = "Image Link"/><br/>
                     <input required type = "date" ref = {(input) => this.getDate = input}
                     defaultValue = { this.props.post.date } placeholder = "Enter new date"/><br/>
                     <input required type = "time" ref = {(input) => this.getTime = input}
@@ -36,5 +41,6 @@ export default class EditPost extends React.Component{
                 </form>
             </div>
         )
+      }
     }
 }

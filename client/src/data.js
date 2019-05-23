@@ -6,6 +6,7 @@ const Event = new Schema(
     {
         eventId : Date,
         desc: String,
+        imageUrl: String,
         date :String,
         time : String,
         followers : String

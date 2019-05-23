@@ -31,15 +31,16 @@ router.get('/' ,(req,res)=>{
 router.post('/addEvent' ,(req,res)=>{
     
     let data = new Data();
-    const { _id, desc, date, time, followers } = req.body;
+    const { _id, desc, date, time, followers , imageUrl } = req.body;
 
     data._id = _id;
     data.desc = desc;
     data.date = date;
+    data.imageUrl = imageUrl;
     data.time = time;
     data.followers = followers;
 
-    let event = { id : _id, desc : desc, date : date, time : time, followers : followers };
+    let event = { id : _id, desc : desc, imageUrl: imageUrl,  date : date, time : time, followers : followers };
     data.save(err =>{
         if(err) return res.json({success : false , error : err});
         return res.json( { success : true, event : event } )
@@ -55,6 +56,7 @@ router.get("/getEvents", (req,res)=>{
             let temp = {}
             temp.id = elem._id;
             temp.desc = elem.desc;
+            temp.imageUrl = elem.imageUrl;
             temp.date = elem.date;
             temp.time = elem.time;
             temp.followers = elem.followers;
@@ -70,13 +72,13 @@ router.get("/getEvents", (req,res)=>{
 // Update
 router.post("/editEvent", (req,res)=>{
     //console.log(req.body);
-    const { id, desc, date, time, followers } = req.body;
+    const { id, desc, date, time, followers , imageUrl} = req.body;
     match = { _id : id };
     console.log(desc);
     console.log(date);
     console.log(time);
     console.log(followers);
-    update = { desc : desc , date : date , time : time, followers : followers};
+    update = { desc : desc , imageUrl: imageUrl,  date : date , time : time, followers : followers};
     Data.updateOne(match,update ,err=>{
         if(err) return res.json({success:false,error :err});
         return res.json({success:true});
@@ -93,6 +95,7 @@ router.delete("/deleteEvent" ,(req,res)=>{
         return res.json({ success : true , id : id });
     });
 });
+
 
 app.use('/api',router);
 app.listen(port , ()=> console.log(`Listening on port ${port}`) );
