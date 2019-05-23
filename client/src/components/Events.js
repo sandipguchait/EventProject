@@ -2,6 +2,7 @@ import React from 'react';
 import Post from '../containers/Post';
 import { connect } from 'react-redux';
 import  * as actions from '../actions';
+import { Button } from 'reactstrap';
 
 class Events extends React.Component {
 
