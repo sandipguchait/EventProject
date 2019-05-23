@@ -1,9 +1,11 @@
 import React from 'react';
+import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
-export default class EditPost extends React.Component{
+class EditPost extends React.Component{
     makeUpdates = (e) => {
-        console.log(this.props.post.id)
-        const id = this.props.post.id; 
+        console.log(this.props.post)
+        // const id = this.props.post.id; 
         e.preventDefault();
         console.log("clicked!")
         const newDesc = this.getDesc.value;
@@ -13,13 +15,18 @@ export default class EditPost extends React.Component{
         const newFollowers = this.getFollowers.value;
 
         const data = {
+            id : this.props.post._id, 
             desc : newDesc,
             imageUrl: newImageUrl,
             date : newDate,
             time : newTime,
             followers : newFollowers
         }
-        this.props.edit(id, data);
+        axios.post('/api/editEvent', data)
+            .then(() =>{
+                this.props.history.push('/eventlist')
+            })
+        
     }
 
     render(){
@@ -44,3 +51,5 @@ export default class EditPost extends React.Component{
       }
     }
 }
+
+export default withRouter(EditPost)

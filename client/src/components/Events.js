@@ -1,6 +1,5 @@
 import React from 'react';
 import Post from '../containers/Post';
-import { Spinner } from 'reactstrap';
 import { connect } from 'react-redux';
 import  * as actions from '../actions';
 

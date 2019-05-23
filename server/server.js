@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
+const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const Data = require('./data');
@@ -22,6 +22,7 @@ db.on("error", () => console.error.bind(console,"Connection Failed"));
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+app.use(cors());
 
 router.get('/' ,(req,res)=>{
     res.send("The server is working");
@@ -41,7 +42,7 @@ router.post('/addEvent' ,(req,res)=>{
     data.followers = followers;
 
     let event = { id : _id, desc : desc, imageUrl: imageUrl,  date : date, time : time, followers : followers };
-    data.save(err =>{
+    data.save(err => {
         if(err) return res.json({success : false , error : err});
         return res.json( { success : true, event : event } )
     });
@@ -69,18 +70,27 @@ router.get("/getEvents", (req,res)=>{
     });
 });
 
+router.get("/getEvent/:id", (req, res) => {
+    Data.findById(req.params.id, (err, event)=>{
+        if(err) return res.status(400).send(err);
+        return res.json({ success : true, event : event })
+    })
+})
+
 // Update
 router.post("/editEvent", (req,res)=>{
     //console.log(req.body);
     const { id, desc, date, time, followers , imageUrl} = req.body;
     match = { _id : id };
     console.log(desc);
+    console.log(id);
+    console.log(imageUrl);
     console.log(date);
     console.log(time);
     console.log(followers);
     update = { desc : desc , imageUrl: imageUrl,  date : date , time : time, followers : followers};
-    Data.updateOne(match,update ,err=>{
-        if(err) return res.json({success:false,error :err});
+    Data.updateOne(match,update ,err=> {
+        if(err) return res.json({success:false,error : err});
         return res.json({success:true});
     });
 });

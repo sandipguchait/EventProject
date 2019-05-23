@@ -2,7 +2,10 @@ import React from 'react';
 import Event from './containers/Event';
 import Events from './containers/Events';
 import EditPost from './components/EditPost';
+import UpdateEvent from './components/Updateevent';
+
 import { BrowserRouter , Route, Switch } from 'react-router-dom';
+
 
 class App extends React.Component {
   
@@ -13,7 +16,7 @@ class App extends React.Component {
           <Events /> */}
           <Route exact path="/addevent" component={Event} />
           <Route path="/eventlist" component={Events} />
-          <Route path="/updateevent" component={EditPost} />
+          <Route path="/update/:id" component={UpdateEvent} />
       </div>
     )
   }

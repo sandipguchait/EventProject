@@ -21,6 +21,17 @@ export const Reducers = (currentState = INITIAL_STATE, action) => {
                 eventToEdit : null,
                 editing : false
             }
+
+        case 'FETCH_EVENT': 
+            return{
+                ...currentState,
+                [action.payload.id]: action.payload,
+                isFetching : false,
+                error : null,
+                eventToDelete : null,
+                eventToEdit : null,
+                editing : false
+            }
         
         case actions.FETCH_EVENTS_SUCCESS:
             return {

@@ -62,6 +62,16 @@ export function fetchEvents() {
     }
 }
 
+export const fetchEvent = (id) => async dispatch => {
+    const response = await axios.get(`/api/getEvent/:${id}`);
+    console.log('SINGLE EVENT', response.data)
+    dispatch({
+        type: 'FETCH_EVENT',
+        payload: response.data
+    })
+}
+
+
 
 export const editEvent = (id, event) => {
     return (dispatch) => {

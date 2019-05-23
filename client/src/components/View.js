@@ -1,6 +1,6 @@
 import React from 'react';
 import EditPost from './EditPost';
-import { withRouter }  from 'react-router-dom'
+import { withRouter, Link  }  from 'react-router-dom'
 import '../index.css'
 import { Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button, Container , Col, Row, CardHeader} from 'reactstrap';
@@ -16,8 +16,10 @@ class View extends React.Component {
         }
     }
     editEvent = () => {
-        this.setState({ showForm : true })
-        
+        this.setState({ showForm : true }, () => {
+            this.props.history.push('/update')
+        })
+
     }
 
     renderForm = () => (
@@ -37,10 +39,10 @@ class View extends React.Component {
                         Time : { this.props.event.time }<br/>
                         Followers : { this.props.event.followers}<br/>
                     </CardText>
-                    <Button color="primary" onClick = { this.editEvent }>EDIT</Button>{' '}
+                    <Link to={`/update/${this.props.event.id}`}><Button color="primary">EDIT</Button></Link>{' '}
                     <Button color="danger" onClick = {() => this.props.delete(this.props.event.id) }>DELETE</Button>{' '}
                     <div>
-                     { this.state.showForm? <UpdateEvent key={this.props.event.id} post={this.props.event} edit={this.props.edit} /> : "" }
+                     { this.state.showForm? <UpdateEvent renderForm={this.renderForm()} /> : "" }
                     </div>
                     </CardBody>
                 </Card>
