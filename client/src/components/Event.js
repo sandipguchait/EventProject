@@ -2,7 +2,7 @@ import React from 'react';
 import '../index.css';
 import { Button } from 'reactstrap';
 
-export default class Event extends React.Component {
+class Event extends React.Component {
     componentDidMount(){
         this.props.fetchEvents();
         console.log(this.props.fetchEvents)
@@ -63,3 +63,5 @@ export default class Event extends React.Component {
         )
     }    
 }
+
+export default Event;

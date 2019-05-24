@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 
+export const UserContext = React.createContext();
 
 class GoogleAuth extends Component {
 
   state = {
-    isSignedIn: null
+    isSignedIn: null,
+    currentUser: ""
   }
 
   componentDidMount() {
@@ -15,14 +17,14 @@ class GoogleAuth extends Component {
         scope: 'email'
       }).then(() => {
         this.auth = window.gapi.auth2.getAuthInstance();
-        this.setState({ isSignedIn: this.auth.isSignedIn.get() });
+        this.setState({ isSignedIn: this.auth.isSignedIn.get(), currentUser: this.auth.currentUser.get().getId() });
         this.auth.isSignedIn.listen(this.onAuthChange)
       })
     });
   };
 
   onAuthChange = () => {
-    this.setState({ isSignedIn: this.auth.isSignedIn.get() });
+    this.setState({ isSignedIn: this.auth.isSignedIn.get()});
   };
 
   onSignInClick = () => {
@@ -54,10 +56,13 @@ class GoogleAuth extends Component {
   }
 
   render() {
+    const { isSignedIn } = this.state;
     return (
-      <div>
-        {this.renderAuthButton()}
-      </div>
+      <UserContext.Provider value={{ isSignedIn }}>
+        <div>
+          {this.renderAuthButton()}
+        </div>
+      </UserContext.Provider>
     );
   } 
 }

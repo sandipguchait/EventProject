@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const nodemailer = require('nodemailer');
 
 const Data = require('./data');
 
@@ -23,6 +24,7 @@ db.on("error", () => console.error.bind(console,"Connection Failed"));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(cors());
+
 
 router.get('/' ,(req,res)=>{
     res.send("The server is working");

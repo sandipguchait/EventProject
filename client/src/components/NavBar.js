@@ -24,6 +24,7 @@ export default class NavBar extends React.Component {
     });
   }
   render() {
+    const { isSignedIn } = this.props;
     return (
       <div>
         <Navbar color="dark" light expand="md">
@@ -35,7 +36,7 @@ export default class NavBar extends React.Component {
                 <NavLink href="/eventlist" style={{ color: "white"}}><strong>EventList</strong></NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/addEvent" style={{ color: "white"}}><strong>AddEvent</strong></NavLink>
+                { isSignedIn ? <NavLink href="/addEvent" style={{ color: "white"}}><strong>AddEvent</strong></NavLink> : null}
               </NavItem>
               <NavItem>
                 <GoogleAuth />

@@ -3,7 +3,7 @@ body {
   padding: 0;
   font-family:"Montserrat",
     sans-serif;
-    background-image: url(../src/images/bgimg.png) ;
+    background-image: url(../src/images/bg.png);
     background-size: cover;    
 }
 
