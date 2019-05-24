@@ -5,9 +5,7 @@ import { withRouter } from 'react-router-dom';
 class EditPost extends React.Component{
     makeUpdates = (e) => {
         console.log(this.props.post)
-        // const id = this.props.post.id; 
         e.preventDefault();
-        console.log("clicked!")
         const newDesc = this.getDesc.value;
         const newImageUrl = this.getImageUrl.value
         const newDate = this.getDate.value;
@@ -32,7 +30,8 @@ class EditPost extends React.Component{
     render(){
         if(this.props.post) {
         return(
-            <div key = { this.props.post.id } className='post'>
+            <div key = { this.props.post.id } className='post' style={{ marginTop: "50px"}}>
+                <h1 style={{textAlign: "center"}}>UpdateForm</h1>
                 <form className ="form">
                     <input required type = "text" ref = {(input) => this.getDesc = input}
                     defaultValue = { this.props.post.desc } placeholder = "Enter new description"/><br/>
@@ -44,7 +43,7 @@ class EditPost extends React.Component{
                     defaultValue = { this.props.post.time } placeholder = "Enter new time"/><br/>
                     <input required type = "number" ref = {(input) => this.getFollowers = input}
                     defaultValue = { this.props.post.followers } placeholder = "Enter new followers"/><br/> 
-                    <button onClick = { this.makeUpdates } >Update</button>
+                    <button onClick = { this.makeUpdates } >Submit</button>
                 </form>
             </div>
         )

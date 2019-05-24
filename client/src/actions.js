@@ -22,6 +22,20 @@ export const EDIT_EVENT_REQUEST = "EDIT_EVENT_REQUEST";
 
 
 
+//SIGN IN AND SIGN OUT 
+export const signIn = (userId) => {
+    return {
+        type: 'SIGN_IN',
+        payload: userId
+    }
+}
+
+export const signOut = () => {
+    return {
+        type: 'SIGN_OUT'
+    }
+}
+
 // Add event actions
 export const addEvent = (event) => {
     console.log('FROM ACTION',event);

@@ -8,6 +8,7 @@ import {
   NavItem,
   NavLink,
   } from 'reactstrap';
+  import GoogleAuth from './GoogleAuth';
 
 export default class NavBar extends React.Component {
   constructor(props) {
@@ -35,6 +36,9 @@ export default class NavBar extends React.Component {
               </NavItem>
               <NavItem>
                 <NavLink href="/addEvent" style={{ color: "white"}}><strong>AddEvent</strong></NavLink>
+              </NavItem>
+              <NavItem>
+                <GoogleAuth />
               </NavItem>
             </Nav>
           </Collapse>
